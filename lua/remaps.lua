@@ -46,4 +46,4 @@ keymap.set('n', '<C-w><up>', '5<C-w>+')
 keymap.set('n', '<C-w><down>', '5<C-w>-')
 keymap.set('n', 's=', '<C-w>=')
 
-keymap.set('', "<leader>j", ":FloatermToggle<CR>")
+keymap.set('', "<leader>j", ":FloatermToggle<CR>", { silent = true })

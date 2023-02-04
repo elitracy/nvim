@@ -44,14 +44,22 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' }, -- Optional
     }
   }
+
   use 'windwp/nvim-autopairs'
+
   use 'kyazdani42/nvim-web-devicons' -- Telescope Icons
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  -- Git integration
   use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim'
+
   use 'voldikss/vim-floaterm'
+
+  -- Comment Support
+  use 'numToStr/Comment.nvim'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 end)
