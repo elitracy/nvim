@@ -33,13 +33,16 @@ lsp.configure('sumneko_lua', {
 })
 
 lsp.configure('eslint', {
-  on_attach = function(client, bufnr)
+  on_attach = function()
     vim.api.nvim_create_autocmd('BufWritePre', {
       pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
       command = 'silent! EslintFixAll',
-      group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+      group = vim.api.nvim_create_augroup('ESLintFormatting', {}),
     })
-  end
+  end,
+  rulesCustomizations = {
+    indent = 0
+  }
 })
 
 local cmp = require('cmp')
@@ -51,21 +54,12 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
 lsp.set_preferences({
-  suggest_lsp_servers = false,
-  sign_icons = {
-    error = 'E',
-    warn = 'W',
-    hint = 'H',
-    info = 'I'
-  }
+  suggest_lsp_servers = true,
 })
 
 
@@ -75,7 +69,6 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
   vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
   vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)

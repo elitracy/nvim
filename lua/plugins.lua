@@ -45,7 +45,11 @@ return require('packer').startup(function(use)
     }
   }
 
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('MunifTanjim/prettier.nvim')
+
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
 
   use 'kyazdani42/nvim-web-devicons' -- Telescope Icons
   use {
