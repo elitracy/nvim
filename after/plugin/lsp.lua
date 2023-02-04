@@ -10,16 +10,16 @@ lsp.ensure_installed({
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
-    settings = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
+  settings = {
+    diagnostics = {
+      globals = { 'vim' }
     }
+  }
 })
 
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -35,17 +35,29 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
+  suggest_lsp_servers = false,
+  sign_icons = {
+    error = 'E',
+    warn = 'W',
+    hint = 'H',
+    info = 'I'
+  }
 })
 
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_format,
+    buffer = bufnr,
+    callback = function()
+      vim.cmd("LspZeroFormat")
+    end,
+  })
+end
+
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+  local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -57,11 +69,12 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>gr", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-j>", function() vim.lsp.buf.signature_help() end, opts)
+
+  enable_format_on_save(client, bufnr)
 end)
 
 lsp.setup()
 
 vim.diagnostic.config({
-    virtual_text = true
+  virtual_text = true
 })
-
