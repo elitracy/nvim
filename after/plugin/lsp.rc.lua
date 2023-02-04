@@ -8,8 +8,23 @@ lsp.ensure_installed({
   'eslint'
 })
 
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_format,
+    buffer = bufnr,
+    callback = function()
+      vim.cmd("LspZeroFormat")
+    end,
+  })
+end
+
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
+  on_attach = function(client, bufnr)
+    enable_format_on_save(client, bufnr)
+  end,
   settings = {
     diagnostics = {
       globals = { 'vim' }
@@ -17,6 +32,15 @@ lsp.configure('sumneko_lua', {
   }
 })
 
+lsp.configure('eslint', {
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+      command = 'silent! EslintFixAll',
+      group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+    })
+  end
+})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -44,17 +68,6 @@ lsp.set_preferences({
   }
 })
 
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-local enable_format_on_save = function(_, bufnr)
-  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = augroup_format,
-    buffer = bufnr,
-    callback = function()
-      vim.cmd("LspZeroFormat")
-    end,
-  })
-end
 
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
@@ -70,7 +83,6 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>gr", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-j>", function() vim.lsp.buf.signature_help() end, opts)
 
-  enable_format_on_save(client, bufnr)
 end)
 
 lsp.setup()

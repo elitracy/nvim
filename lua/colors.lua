@@ -1,9 +1,6 @@
-function RemoveBG(color)
-	color = color or "rose-pine"
-	vim.cmd.colorscheme(color)
-
-	vim.api.nvim_set_hl(0,"Normal", {bg = "none"})
-	vim.api.nvim_set_hl(0,"NormalFloat", {bg = "none"})
-end
-
-RemoveBG()
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.wildoptions = 'pum'
+vim.opt.pumblend = 0
+vim.opt.background = 'dark'
+vim.opt.foldmethod = 'manual'

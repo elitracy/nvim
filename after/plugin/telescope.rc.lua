@@ -8,4 +8,15 @@ vim.keymap.set('n', '<leader>;t', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>;h', builtin.oldfiles, {})
 
 telescope.load_extension "file_browser"
-vim.keymap.set( "n", "sf", ":Telescope file_browser<CR> initial_mode=normal ", { noremap = true, silent = true } )
+vim.keymap.set("n", "sf", ":Telescope file_browser<CR> ", { noremap = true, silent = true })
+
+telescope.setup {
+  defaults = {
+    sorting_strategy = "ascending",
+    grouped = true,
+    layout_config = { prompt_position = "top", preview_width = .65 }
+  },
+  extensions = {
+    file_browser = { grouped = true, initial_mode = 'normal' }
+  }
+}
