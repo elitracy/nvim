@@ -12,6 +12,7 @@ prettier.setup({
     "less",
     "markdown",
     "scss",
+    "svelte",
     "typescript",
     "typescriptreact",
     "yaml",

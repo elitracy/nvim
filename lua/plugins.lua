@@ -8,6 +8,14 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-file-browser.nvim' } }
   }
 
+  use {
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  },
+  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+}
+
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
@@ -62,8 +70,13 @@ return require('packer').startup(function(use)
   use 'dinhhuy258/git.nvim'
 
   use 'voldikss/vim-floaterm'
+  use 'christoomey/vim-tmux-navigator'
 
   -- Comment Support
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'github/copilot.vim'
+
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 end)

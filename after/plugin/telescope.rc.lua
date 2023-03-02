@@ -8,7 +8,7 @@ telescope.setup {
     grouped = true,
     layout_config = { prompt_position = "top" },
     hidden = true,
-    file_ignore_patterns = { ".git", "build", "node_modules" }
+    file_ignore_patterns = { "node_modules" }
   },
   extensions = {
     file_browser = {
@@ -21,7 +21,7 @@ telescope.setup {
       files = true,
       auto_depth = 2,
       git_status = true,
-      file_ignore_patterns = { ".git", "build", "node_modules" }
+      file_ignore_patterns = { "node_modules" }
     }
   }
 }
@@ -30,7 +30,7 @@ telescope.load_extension "file_browser"
 vim.keymap.set('n', 'ff', builtin.find_files, {})
 vim.keymap.set('n', 'sf', extensions.file_browser.file_browser, { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 
 vim.keymap.set('n', '<leader>;r', builtin.live_grep, {})
