@@ -20,7 +20,6 @@ return {
                 borderless_telescope = true,
                 terminal_colors = true,
             })
-            vim.cmd("colorscheme cyberdream")
         end,
     },
     {
@@ -43,6 +42,12 @@ return {
     },
     {
         "rebelot/kanagawa.nvim",
+    },
+    {
+        "catppuccin/nvim",
+        config = function()
+            vim.cmd("colorscheme catppuccin-macchiato")
+        end
     }
 
 }

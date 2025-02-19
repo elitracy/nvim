@@ -8,7 +8,6 @@ return {
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_lspconfig()
 
-
             lsp_zero.set_sign_icons({
                 error = ' ',
                 warn = ' ',
@@ -34,7 +33,8 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { "lua_ls" },
+                automatic_installation = true,
+                ensure_installed = { "lua_ls", "clangd" },
                 handlers = {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})
@@ -57,7 +57,7 @@ return {
                         })
                         require("lspconfig").clangd.setup({
                             cmd = {
-                                "/opt/homebrew/opt/llvm/bin/clangd",
+                                "clangd",
                                 "--background-index",
                                 "--pch-storage=memory",
                                 "--all-scopes-completion",
@@ -72,24 +72,6 @@ return {
                             root_dir = require('lspconfig').util.root_pattern("src"),
                             init_option = { fallbackFlags = { "-std=c++2a" } },
                         })
-                        require("lspconfig").hls.setup({
-                            cmd = {
-                                "/opt/homebrew/Cellar/haskell-language-server/2.8.0.0/bin/haskell-language-server-wrapper",
-                                "lsp"
-                            },
-                        })
-
-                        require("lspconfig").sourcekit.setup({
-                            capabilities = {
-                                workspace = {
-                                    didChangeWatchedFiles = {
-                                        dynamicRegistration = true,
-                                    },
-                                },
-                            },
-
-                        })
-                        require("lspconfig").tailwindcss.setup({})
                     end
                 },
             })

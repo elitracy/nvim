@@ -40,12 +40,12 @@ return {
                     { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                 },
                 lualine_x = {
-                    {
-                        "lsp_progress",
-                        display_components = { 'lsp_client_name', "spinner", { 'percentage' } },
-                        timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 500 },
-
-                    },
+                    -- {
+                    --     "lsp_progress",
+                    --     display_components = { 'lsp_client_name', "spinner", { 'percentage' } },
+                    --     timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 500 },
+                    --
+                    -- },
                     {
                         "diff",
                         symbols = {
