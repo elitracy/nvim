@@ -25,8 +25,8 @@ return {
                 vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, { buffer = bufnr })
                 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { buffer = bufnr })
                 vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, { buffer = bufnr })
-                vim.keymap.set('n', 'gr', function() vim.lsp.buf.rename() end, { buffer = bufnr })
-                vim.keymap.set('n', 'ca', function() vim.lsp.buf.code_action() end, { buffer = bufnr })
+                vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.rename() end, { buffer = bufnr })
+                vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, { buffer = bufnr })
                 vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, { buffer = bufnr })
                 vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
             end)
@@ -34,7 +34,7 @@ return {
             require('mason').setup({})
             require('mason-lspconfig').setup({
                 automatic_installation = true,
-                ensure_installed = { "lua_ls", "clangd" },
+                ensure_installed = { "lua_ls", "clangd", "gopls" },
                 handlers = {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})

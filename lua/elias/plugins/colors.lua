@@ -8,21 +8,6 @@ return {
         end
     },
     {
-        "scottmckendry/cyberdream.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("cyberdream").setup({
-                -- Recommended - see "Configuring" below for more config options
-                transparent = true,
-                italic_comments = true,
-                hide_fillchars = true,
-                borderless_telescope = true,
-                terminal_colors = true,
-            })
-        end,
-    },
-    {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
@@ -34,20 +19,19 @@ return {
         "fynnfluegge/monet.nvim",
         name = "monet",
     },
-
-    {
-        "diegoulloao/neofusion.nvim",
-        priority = 1000,
-        opts = ...
-    },
-    {
-        "rebelot/kanagawa.nvim",
-    },
     {
         "catppuccin/nvim",
+    },
+    {
+        "mcauley-penney/techbase.nvim"
+    },
+    {
+        "rijulpaul/nightblossom.nvim",
         config = function()
-            vim.cmd("colorscheme catppuccin-macchiato")
+            vim.cmd("colorscheme nightblossom-pastel")
         end
-    }
+    },
+
+
 
 }

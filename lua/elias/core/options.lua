@@ -21,7 +21,7 @@ opt.scrolloff = 10
 opt.shell = 'zsh'
 opt.backupskip = '/tmp/*,/private/tmp/*'
 opt.inccommand = 'split'
-opt.ignorecase = true
+opt.ignorecase = false
 opt.smarttab = true
 opt.breakindent = true
 opt.shiftwidth = 4
@@ -37,13 +37,3 @@ opt.ttimeoutlen = 10
 
 -- MacOS
 opt.clipboard:append { 'unnamedplus' }
-
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  command = "set nopaste"
-})

@@ -13,6 +13,6 @@ vim.api.nvim_set_hl(0, "WinSeparator", { ctermfg = "Gray", ctermbg = "Black" })
 vim.cmd [[
   augroup highlight_yank
   autocmd!
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
   augroup END
 ]]

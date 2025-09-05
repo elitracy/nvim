@@ -6,7 +6,7 @@ return {
                 modules = {},
                 autotag = { enable = true, },
                 indent = { enabled = true },
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+                ensure_installed = { "lua", "vim", "vimdoc", "query" },
 
                 sync_install = false,
                 auto_install = true,
