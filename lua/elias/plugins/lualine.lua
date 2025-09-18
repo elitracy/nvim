@@ -20,7 +20,6 @@ return {
         return {
             options = {
                 theme = "auto",
-                globalstatus = true,
                 disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
             },
             sections = {
@@ -72,7 +71,7 @@ return {
                 lualine_z = {},
             },
             inactive_sections = {
-                lualine_b = { 'filename' },
+                lualine_a = { 'filename' },
                 lualine_y = { 'location' }
             },
             extensions = { "neo-tree", "lazy" },
