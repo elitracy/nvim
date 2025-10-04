@@ -27,10 +27,14 @@ return {
     },
     {
         "rijulpaul/nightblossom.nvim",
-        config = function()
-            vim.cmd("colorscheme nightblossom-pastel")
-        end
     },
+    {
+        "challenger-deep-theme/vim",
+        config = function()
+            vim.cmd("colorscheme challenger_deep")
+        end
+
+    }
 
 
 

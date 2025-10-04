@@ -34,6 +34,11 @@ opt.wildignore:append { '*/node_modules/*' }
 opt.mouse = 'a'
 opt.pumheight = 10
 opt.ttimeoutlen = 10
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldnestmax = 1
+opt.foldlevel = 0
+opt.foldlevelstart = 1
 
 -- MacOS
 opt.clipboard:append { 'unnamedplus' }

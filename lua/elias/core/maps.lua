@@ -27,3 +27,7 @@ map.set('n', '<leader>s=', '<C-w>=')
 map.set('n', '<leader>li', '<CMD> LspInfo <CR>')
 map.set('n', '<leader>lr', '<CMD> LspRestart <CR>')
 map.set('n', '<leader>ll', '<CMD> LspLog <CR>')
+
+-- Folds
+map.set('n', 'zO', 'zR')
+map.set('n', 'zC', 'zM')
