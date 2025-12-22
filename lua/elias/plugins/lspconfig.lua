@@ -31,13 +31,17 @@ return {
                 vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
             end)
 
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+
             require('mason').setup({})
             require('mason-lspconfig').setup({
                 automatic_installation = true,
                 ensure_installed = { "lua_ls", "clangd", "gopls" },
                 handlers = {
                     function(server_name)
-                        require('lspconfig')[server_name].setup({})
+                        require('lspconfig')[server_name].setup({
+                            capabilities = capabilities
+                        })
                     end,
                     lua_ls = function()
                         require('lspconfig').lua_ls.setup({
