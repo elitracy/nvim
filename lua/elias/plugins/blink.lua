@@ -23,9 +23,11 @@ return {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         keymap = {
-            preset = 'enter',
-            ["C-n"] = { "show", "select_next" },
-            ["C-p"] = { "show", "select_prev" },
+            preset = 'default',
+            ['<C-n>'] = { 'show', 'select_next', 'fallback' },
+            ['<C-p>'] = { 'select_prev', 'fallback' },
+            ['<CR>'] = { 'accept', 'fallback' },
+            ['<C-y>'] = { 'select_and_accept' },
         },
 
         appearance = {
@@ -37,7 +39,10 @@ return {
         completion = {
             list = {
                 max_items = 5,
-                preselect = true,
+                selection = {
+                    preselect = false,
+                    auto_insert = false,
+                },
             },
             documentation = {
                 auto_show = true,
@@ -65,9 +70,7 @@ return {
                 },
             },
             trigger = {
-                prefetch_on_insert = true,
-                show_on_insert = true,
-                show_on_keyword = true,
+                show_on_insert_on_trigger_character = true,
             },
         },
 

@@ -30,10 +30,20 @@ return {
     },
     {
         "challenger-deep-theme/vim",
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
         config = function()
-            vim.cmd("colorscheme challenger_deep")
+            -- vim.cmd("colorscheme oxocarbon")
+            vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#cccccc" })
+            vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = "#ffffff" })
         end
-
+    },
+    {
+        "elitracy/blackbag.nvim",
+        config = function()
+            vim.cmd("colorscheme blackbag")
+        end
     }
 
 

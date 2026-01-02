@@ -1,6 +1,17 @@
 local map = vim.keymap
 
+-- Delete without overwriting clipboard
 map.set('n', 'x', '"_x')
+map.set('n', 'd', '"_d')
+map.set('n', 'D', '"_D')
+map.set('n', 'c', '"_c')
+map.set('n', 'C', '"_C')
+map.set('v', 'd', '"_d')
+map.set('v', 'c', '"_c')
+
+-- Use leader+d/c for cut operations
+map.set({ 'n', 'v' }, '<leader>d', '"+d')
+map.set({ 'n', 'v' }, '<leader>c', '"+c')
 
 map.set('n', '<leader>rn', '<CMD> set relativenumber! <CR>')
 

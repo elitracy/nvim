@@ -4,6 +4,7 @@ return {
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
+        dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
         config = function()
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_lspconfig()
@@ -33,7 +34,6 @@ return {
 
             local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-            require('mason').setup({})
             require('mason-lspconfig').setup({
                 automatic_installation = true,
                 ensure_installed = { "lua_ls", "clangd", "gopls" },
@@ -45,21 +45,12 @@ return {
                     end,
                     lua_ls = function()
                         require('lspconfig').lua_ls.setup({
-                            settings = {
-                                Lua = {
-                                    diagnostics = {
-                                        globals = { 'vim' },
-                                    },
-
-                                    workspace = {
-                                        library = vim.api.nvim_get_runtime_file(
-                                            "", true),
-                                        checkThirdParty = false
-                                    },
-                                },
-                            },
+                            capabilities = capabilities,
                         })
+                    end,
+                    clangd = function()
                         require("lspconfig").clangd.setup({
+                            capabilities = capabilities,
                             cmd = {
                                 "clangd",
                                 "--background-index",
