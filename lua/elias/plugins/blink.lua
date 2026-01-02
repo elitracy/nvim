@@ -1,6 +1,6 @@
 return {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip' },
+    dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'echasnovski/mini.pairs' },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -26,8 +26,8 @@ return {
             preset = 'default',
             ['<C-n>'] = { 'show', 'select_next', 'fallback' },
             ['<C-p>'] = { 'select_prev', 'fallback' },
-            ['<CR>'] = { 'accept', 'fallback' },
             ['<C-y>'] = { 'select_and_accept' },
+            ['<CR>'] = { 'accept', 'fallback' },
         },
 
         appearance = {

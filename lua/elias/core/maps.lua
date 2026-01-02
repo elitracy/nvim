@@ -42,3 +42,11 @@ map.set('n', '<leader>ll', '<CMD> LspLog <CR>')
 -- Folds
 map.set('n', 'zO', 'zR')
 map.set('n', 'zC', 'zM')
+
+-- Surround visual selection by typing the delimiter
+map.set('x', '"', [[c""<Esc>P]], { desc = 'Surround with double quotes' })
+map.set('x', "'", [[c''<Esc>P]], { desc = 'Surround with single quotes' })
+map.set('x', '(', [[c()<Esc>P]], { desc = 'Surround with parentheses' })
+map.set('x', '[', [[c[]<Esc>P]], { desc = 'Surround with brackets' })
+map.set('x', '{', [[c{}<Esc>P]], { desc = 'Surround with braces' })
+map.set('x', '`', [[c``<Esc>P]], { desc = 'Surround with backticks' })
