@@ -21,6 +21,7 @@ opt.scrolloff = 10
 opt.shell = 'zsh'
 opt.backupskip = '/tmp/*,/private/tmp/*'
 opt.inccommand = 'split'
+opt.splitright = true
 opt.ignorecase = true
 opt.smarttab = true
 opt.breakindent = true

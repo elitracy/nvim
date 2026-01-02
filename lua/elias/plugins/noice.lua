@@ -11,15 +11,11 @@ return {
         },
         routes = {
             {
+                view = "notify",
                 filter = {
                     event = "msg_show",
-                    any = {
-                        { find = "%d+L, %d+B" },
-                        { find = "; after #%d+" },
-                        { find = "; before #%d+" },
-                    },
+                    kind = "shell_out"
                 },
-                view = "mini",
             },
         },
         presets = {
@@ -47,4 +43,3 @@ return {
         require("noice").setup(opts)
     end,
 }
-

@@ -1,6 +1,5 @@
 return {
     "xiyaowong/transparent.nvim",
-    event = "VeryLazy",
     config = function()
         require("transparent").setup({
             exclude_groups = {
@@ -30,6 +29,7 @@ return {
                 "GitSignsAddLn",
                 "GitSignsChangeLn",
                 "GitSignsDeleteLn",
+
             },
         })
     end
