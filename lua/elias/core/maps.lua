@@ -9,6 +9,9 @@ map.set('n', 'C', '"_C')
 map.set('v', 'd', '"_d')
 map.set('v', 'c', '"_c')
 
+-- dd auto cuts to system clipboard
+map.set('n', 'dd', '"+dd')
+
 -- Use leader+d/c for cut operations
 map.set({ 'n', 'v' }, '<leader>d', '"+d')
 map.set({ 'n', 'v' }, '<leader>c', '"+c')
