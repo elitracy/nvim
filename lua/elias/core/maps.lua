@@ -2,12 +2,6 @@ local map = vim.keymap
 
 -- Delete without overwriting clipboard
 map.set('n', 'x', '"_x')
-map.set('n', 'd', '"_d')
-map.set('n', 'D', '"_D')
-map.set('n', 'c', '"_c')
-map.set('n', 'C', '"_C')
-map.set('v', 'd', '"_d')
-map.set('v', 'c', '"_c')
 
 -- dd auto cuts to system clipboard
 map.set('n', 'dd', '"+dd')
