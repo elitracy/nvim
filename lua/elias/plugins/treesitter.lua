@@ -5,7 +5,7 @@ return {
         config = function()
             require 'nvim-treesitter.configs'.setup {
                 modules = {},
-                autotag = { enable = true, },
+
                 indent = { enabled = true },
                 ensure_installed = { "lua", "vim", "vimdoc", "query" },
 
