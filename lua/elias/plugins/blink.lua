@@ -38,7 +38,6 @@ return {
         -- (Default) Only show the documentation popup when manually triggered
         completion = {
             list = {
-                max_items = 5,
                 selection = {
                     preselect = true,
                     auto_insert = false,
