@@ -9,6 +9,7 @@ map.set('n', 'dd', '"+dd')
 -- Use leader+d/c for cut operations
 map.set({ 'n', 'v' }, '<leader>d', '"+d')
 map.set({ 'n', 'v' }, '<leader>c', '"+c')
+map.set({ 'v' }, 'p', 'P')
 
 map.set('n', '<leader>rn', '<CMD> set relativenumber! <CR>')
 
