@@ -40,8 +40,7 @@ return {
         end
     },
     {
-        dir = "~/Documents/Coding/Projects/blackbag.nvim",
-        -- "elitracy/blackbag.nvim",
+        "elitracy/blackbag.nvim",
         config = function()
             vim.cmd("colorscheme blackbag-sonar")
         end
