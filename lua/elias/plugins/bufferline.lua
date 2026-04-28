@@ -3,22 +3,18 @@ return {
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-        require("bufferline").setup({
+        local bufline = require("bufferline")
+
+        bufline.setup({
             options = {
-
-                offsets = { {
-                    filetype = "neo-tree",
-                    text = "File Explorer",
-                    highlight = "Directory",
-                    separator = true -- use a "true" to enable the default, or set your own character
-                } }
+                always_show_bufferline = true,
+                show_buffer_close_icons = false,
+                show_close_icon = false,
             }
-
         })
 
-        vim.keymap.set("n", "<Tab>", "<CMD> BufferLineCycleNext <CR>")
-        vim.keymap.set("n", "<S-Tab>", "<CMD> BufferLineCyclePrev <CR>")
-        vim.keymap.set("n", "<leader>xl", "<CMD> BufferLineCloseLeft <CR>")
-        vim.keymap.set("n", "<leader>xr", "<CMD> BufferLineCloseRight <CR>")
+        vim.keymap.set("n", "]b", ":BufferLineCycleNext<CR>")
+        vim.keymap.set("n", "[b", ":BufferLineCyclePrev<CR>")
     end
+
 }

@@ -14,13 +14,14 @@ opt.smartindent = true
 opt.hlsearch = false
 opt.backup = false
 opt.showcmd = true
-opt.cmdheight = 1
+opt.cmdheight = 2
 opt.laststatus = 2
 opt.expandtab = true
 opt.scrolloff = 10
 opt.shell = 'zsh'
 opt.backupskip = '/tmp/*,/private/tmp/*'
 opt.inccommand = 'split'
+opt.splitright = true
 opt.ignorecase = true
 opt.smarttab = true
 opt.breakindent = true
@@ -34,16 +35,11 @@ opt.wildignore:append { '*/node_modules/*' }
 opt.mouse = 'a'
 opt.pumheight = 10
 opt.ttimeoutlen = 10
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldnestmax = 1
+opt.foldlevel = 0
+opt.foldlevelstart = 1
 
 -- MacOS
 opt.clipboard:append { 'unnamedplus' }
-
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  command = "set nopaste"
-})

@@ -4,10 +4,10 @@ return {
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
+        dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
         config = function()
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_lspconfig()
-
 
             lsp_zero.set_sign_icons({
                 error = ' ',
@@ -26,38 +26,33 @@ return {
                 vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, { buffer = bufnr })
                 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { buffer = bufnr })
                 vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, { buffer = bufnr })
-                vim.keymap.set('n', 'gr', function() vim.lsp.buf.rename() end, { buffer = bufnr })
-                vim.keymap.set('n', 'ca', function() vim.lsp.buf.code_action() end, { buffer = bufnr })
+                vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.rename() end, { buffer = bufnr })
+                vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, { buffer = bufnr })
                 vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, { buffer = bufnr })
                 vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
             end)
 
-            require('mason').setup({})
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+
             require('mason-lspconfig').setup({
-                ensure_installed = { "lua_ls" },
+                automatic_installation = true,
+                ensure_installed = { "lua_ls", "clangd", "gopls" },
                 handlers = {
                     function(server_name)
-                        require('lspconfig')[server_name].setup({})
+                        require('lspconfig')[server_name].setup({
+                            capabilities = capabilities
+                        })
                     end,
                     lua_ls = function()
                         require('lspconfig').lua_ls.setup({
-                            settings = {
-                                Lua = {
-                                    diagnostics = {
-                                        globals = { 'vim' },
-                                    },
-
-                                    workspace = {
-                                        library = vim.api.nvim_get_runtime_file(
-                                            "", true),
-                                        checkThirdParty = false
-                                    },
-                                },
-                            },
+                            capabilities = capabilities,
                         })
+                    end,
+                    clangd = function()
                         require("lspconfig").clangd.setup({
+                            capabilities = capabilities,
                             cmd = {
-                                "/opt/homebrew/opt/llvm/bin/clangd",
+                                "clangd",
                                 "--background-index",
                                 "--pch-storage=memory",
                                 "--all-scopes-completion",
@@ -72,24 +67,6 @@ return {
                             root_dir = require('lspconfig').util.root_pattern("src"),
                             init_option = { fallbackFlags = { "-std=c++2a" } },
                         })
-                        require("lspconfig").hls.setup({
-                            cmd = {
-                                "/opt/homebrew/Cellar/haskell-language-server/2.8.0.0/bin/haskell-language-server-wrapper",
-                                "lsp"
-                            },
-                        })
-
-                        require("lspconfig").sourcekit.setup({
-                            capabilities = {
-                                workspace = {
-                                    didChangeWatchedFiles = {
-                                        dynamicRegistration = true,
-                                    },
-                                },
-                            },
-
-                        })
-                        require("lspconfig").tailwindcss.setup({})
                     end
                 },
             })

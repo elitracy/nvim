@@ -8,22 +8,6 @@ return {
         end
     },
     {
-        "scottmckendry/cyberdream.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("cyberdream").setup({
-                -- Recommended - see "Configuring" below for more config options
-                transparent = true,
-                italic_comments = true,
-                hide_fillchars = true,
-                borderless_telescope = true,
-                terminal_colors = true,
-            })
-            vim.cmd("colorscheme cyberdream")
-        end,
-    },
-    {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
@@ -35,14 +19,33 @@ return {
         "fynnfluegge/monet.nvim",
         name = "monet",
     },
-
     {
-        "diegoulloao/neofusion.nvim",
-        priority = 1000,
-        opts = ...
+        "catppuccin/nvim",
     },
     {
-        "rebelot/kanagawa.nvim",
+        "mcauley-penney/techbase.nvim"
+    },
+    {
+        "rijulpaul/nightblossom.nvim",
+    },
+    {
+        "challenger-deep-theme/vim",
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        config = function()
+            -- vim.cmd("colorscheme oxocarbon")
+            vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#cccccc" })
+            vim.api.nvim_set_hl(0, "SnacksPickerFile", { fg = "#ffffff" })
+        end
+    },
+    {
+        "elitracy/blackbag.nvim",
+        config = function()
+            vim.cmd("colorscheme blackbag-sonar")
+        end
     }
+
+
 
 }

@@ -8,14 +8,12 @@ local config = function()
             }
         }
     })
-    require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "rust_analyzer" },
-    })
-
 end
 
 return {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    config = config
+    {
+        "williamboman/mason.nvim",
+        config = config
+    },
+    { "williamboman/mason-lspconfig.nvim" }
 }
