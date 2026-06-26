@@ -36,7 +36,7 @@ return {
 
             require('mason-lspconfig').setup({
                 automatic_installation = true,
-                ensure_installed = { "lua_ls", "clangd", "gopls" },
+                ensure_installed = { "lua_ls", "clangd", "gopls", "omnisharp" },
                 handlers = {
                     function(server_name)
                         require('lspconfig')[server_name].setup({
@@ -46,6 +46,19 @@ return {
                     lua_ls = function()
                         require('lspconfig').lua_ls.setup({
                             capabilities = capabilities,
+                        })
+                    end,
+                    omnisharp = function()
+                        require('lspconfig').omnisharp.setup({
+                            capabilities = capabilities,
+                            cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+                            root_dir = require('lspconfig').util.root_pattern("*.sln", "*.csproj"),
+                            settings = {
+                                RoslynExtensionsOptions = {
+                                    EnableAnalyzersSupport = true,
+                                    EnableImportCompletion = true,
+                                },
+                            },
                         })
                     end,
                     clangd = function()
