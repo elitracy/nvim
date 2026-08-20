@@ -9,7 +9,16 @@ return {
         local dap, dapui = require('dap'), require('dapui')
         local dapgo = require('dap-go')
         dapui.setup()
-        dapgo.setup()
+        dapgo.setup({
+            dap_configurations = {
+                {
+                    type = "go",
+                    name = "Debug colDBrew",
+                    request = "launch",
+                    program = "${workspaceFolder}/cmd/main.go"
+                }
+            }
+        })
         dap.listeners.before.attach.dapui_config = function()
             dapui.open()
         end
