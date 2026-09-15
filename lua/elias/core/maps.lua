@@ -21,6 +21,11 @@ map.set('n', '<leader>k', 'O<ESC>')
 -- Select all
 map.set('n', '<C-a>', 'gg<S-v>G')
 
+map.set('n', '<C-d>', '<C-d>zz')
+map.set('n', '<C-u>', '<C-u>zz')
+map.set('n', '<C-f>', '<C-f>zz')
+map.set('n', '<C-b>', '<C-b>zz')
+
 -- Splits
 map.set('n', '<leader>sv', '<CMD> vsplit <CR>')
 map.set('n', '<leader>ss', '<CMD> split <CR>')
