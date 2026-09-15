@@ -22,7 +22,31 @@ return {
         styles = {
             notification = {
                 wo = { wrap = true } -- Wrap notifications
-            }
+            },
+            -- Widen snacks' built-in double-esc-to-exit window (default 200ms) for
+            -- terminal floats (Snacks.terminal(), Snacks.lazygit()). A single Esc
+            -- still passes through to the program first; a slower second Esc now
+            -- still registers as "exit terminal-mode" instead of resetting the timer.
+            terminal = {
+                keys = {
+                    term_normal = {
+                        "<esc>",
+                        function(self)
+                            self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+                            if self.esc_timer:is_active() then
+                                self.esc_timer:stop()
+                                vim.cmd("stopinsert")
+                            else
+                                self.esc_timer:start(500, 0, function() end)
+                                return "<esc>"
+                            end
+                        end,
+                        mode = "t",
+                        expr = true,
+                        desc = "Double escape to normal mode",
+                    },
+                },
+            },
         }
     },
     keys = {
